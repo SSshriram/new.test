@@ -1,0 +1,76 @@
+#include<stdio.h>
+#include<string.h>
+void main()
+{
+FILE *dsbill;
+char name[50];
+int tot=0,i=0,ch=0,price[10],j;
+char p1[10]="Rice",p2[10]="Wheat",p3[10]="Dhall",p4[10]="Nuts",p5[10]="Spices";
+
+struct product
+{
+
+char item[50];
+
+}p[10];
+
+
+dsbill=fopen("Bill.docx","w");
+printf("\n\t***** RAM Traders *****");
+printf("\nEnter the Customer Name :");
+scanf("%s",name);
+while(ch!=6)
+{
+printf("\n1.Rice (Rs.50)\t2.Wheat (Rs.70)\t3.Dhall (Rs.60)\t4.Nuts (Rs.30)\t5.Spices (Rs.40)\t6.Exit");
+printf("\nSelect the Product :");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:
+	i=i+1;
+     
+	strcpy(p[i].item,p1);
+	price[i]=50;
+	tot=tot+50;
+	break;
+case 2:
+	i=i+1;
+	strcpy(p[i].item,p2);
+	price[i]=70;
+	tot=tot+70;
+	break;
+case 3:
+	i=i+1;
+	strcpy(p[i].item,p3);
+	price[i]=60;
+	tot=tot+60;
+	break;
+case 4:
+	i=i+1;
+	strcpy(p[i].item,p4);
+	price[i]=30;
+	tot=tot+30;
+	break;
+case 5:
+	i=i+1;
+	strcpy(p[i].item,p5);
+	price[i]=40;
+	tot=tot+40;
+	break;
+case 6:
+	break;
+default:
+	printf("\nInvalid Choice");
+	break;
+}
+}
+fprintf(dsbill,"\t RAM Traders");
+fprintf(dsbill,"\nCustomer Name \t %s",name);
+for(j=1;j<=i;j++)
+{
+fprintf(dsbill,"\n%d.%s\t=%d",j,p[j].item,price[j]);
+}
+fprintf(dsbill,"\nTotal Items \t %d\n Total Amount \t %d",i,tot);
+fclose(dsbill);
+
+}
